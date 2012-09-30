@@ -13,6 +13,7 @@ i'm looking for a new bycicle frame.
   - looks nice in smallest size, like 47/48cm
   - weights no more than 1kg
 
+here's the candidates.
 
 - look
   - 695: proprietary chain sets and tall head tube sucks
