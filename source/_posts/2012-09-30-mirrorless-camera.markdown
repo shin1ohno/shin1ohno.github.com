@@ -3,7 +3,7 @@ layout: post
 title: "mirrorless camera"
 date: 2012-09-30 18:24
 comments: true
-categories: photos
+categories: shoots
 ---
 
 my wife bought a mirrorless camera 'olympus e-pm1'.

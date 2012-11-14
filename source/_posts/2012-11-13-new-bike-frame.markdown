@@ -3,7 +3,7 @@ layout: post
 title: "new bike frame"
 date: 2012-11-13 22:46
 comments: true
-categories: 
+categories: gears
 ---
 
 got new frame 'look 695 SR'. yay !
