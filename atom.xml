@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[11t]]></title>
+  <link href="http://shin1ohno.github.com/atom.xml" rel="self"/>
+  <link href="http://shin1ohno.github.com/"/>
+  <updated>2013-03-08T00:37:22+09:00</updated>
+  <id>http://shin1ohno.github.com/</id>
+  <author>
+    <name><![CDATA[shin1ohno]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[First bit of Objective-C]]></title>
+    <link href="http://shin1ohno.github.com/blog/2013/03/08/first-bit-of-objective-c/"/>
+    <updated>2013-03-08T00:20:00+09:00</updated>
+    <id>http://shin1ohno.github.com/blog/2013/03/08/first-bit-of-objective-c</id>
+    <content type="html"><![CDATA[<p>I think I know very basics of Objective-C for objective way.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>using namespace Cedar::Matchers;
+</span><span class='line'>using namespace Cedar::Doubles;
+</span><span class='line'>
+</span><span class='line'>@interface Greeter : NSObject
+</span><span class='line'>- (id)initWithName:(NSString *)name;
+</span><span class='line'>- (NSString *)sayHello;
+</span><span class='line'>@property (copy) NSString *name;
+</span><span class='line'>@property (assign) NSString *helloWord;
+</span><span class='line'>@end
+</span><span class='line'>
+</span><span class='line'>@interface Greeter ()
+</span><span class='line'>- (void)setWord;
+</span><span class='line'>@end
+</span><span class='line'>
+</span><span class='line'>@implementation Greeter
+</span><span class='line'>- (id)initWithName:(NSString *)name {
+</span><span class='line'>  self = [super init];
+</span><span class='line'>  self.name = name;
+</span><span class='line'>  return self;
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>- (NSString *)sayHello {
+</span><span class='line'>  [self setWord];
+</span><span class='line'>  return self.helloWord;
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>- (void)setWord {
+</span><span class='line'>  NSMutableString *word = [NSMutableString stringWithString:@"hello"];
+</span><span class='line'>  if (self.name != nil) {
+</span><span class='line'>    [word appendString:@", "];
+</span><span class='line'>    [word appendString:self.name];
+</span><span class='line'>  } else {
+</span><span class='line'>    [word appendString:@" !"];
+</span><span class='line'>  }
+</span><span class='line'>  self.helloWord = word;
+</span><span class='line'>}
+</span><span class='line'>@end
+</span><span class='line'>
+</span><span class='line'>SPEC_BEGIN(Sandbox)
+</span><span class='line'>
+</span><span class='line'>describe (@"Greeter", ^{
+</span><span class='line'>  it (@"can be initialized with name", ^{
+</span><span class='line'>    Greeter *man = [[Greeter alloc] initWithName:@"shin1ohno"];
+</span><span class='line'>    man.name should equal(@"shin1ohno");
+</span><span class='line'>    [man sayHello] should equal(@"hello, shin1ohno");
+</span><span class='line'>  });
+</span><span class='line'>
+</span><span class='line'>  it (@"says hello", ^{
+</span><span class='line'>    Greeter *man = [[Greeter alloc] init];
+</span><span class='line'>    [man sayHello] should equal(@"hello !");
+</span><span class='line'>  });
+</span><span class='line'>});
+</span><span class='line'>
+</span><span class='line'>SPEC_END</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Calendar gem]]></title>
+    <link href="http://shin1ohno.github.com/blog/2013/03/07/calendar-gem/"/>
+    <updated>2013-03-07T09:30:00+09:00</updated>
+    <id>http://shin1ohno.github.com/blog/2013/03/07/calendar-gem</id>
+    <content type="html"><![CDATA[<p>I recently create a gem called <a href="https://rubygems.org/gems/event_cal">event_cal</a>.</p>
+
+<p>as of today, the gem has been downloaded over 1,500 times. amazing.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Objective-C for RSpec guy]]></title>
+    <link href="http://shin1ohno.github.com/blog/2013/03/07/objective-c-for-rspec-guy/"/>
+    <updated>2013-03-07T09:20:00+09:00</updated>
+    <id>http://shin1ohno.github.com/blog/2013/03/07/objective-c-for-rspec-guy</id>
+    <content type="html"><![CDATA[<p>RSpec helps me a lot when coding ruby. so, I want a BDD environment like RSpec for Objective-C, too.</p>
+
+<p>I&#8217;m now trying Cedar made by Pivotal Labs a creator of Jasmine.</p>
+
+<p>here&#8217;s first few commands to introduce Cedar.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git://github.com/pivotal/cedar.git
+</span><span class='line'>cd cedar
+</span><span class='line'>./installCodeSnippetsAndTemplates</span></code></pre></td></tr></table></div></figure>
+
+
+<p>as prompted, restart Xcode and you are ready to use new code snippets and templates. the templates are available under the Cedar section in XCode new file wizard.</p>
+
+<p>OK, let&#8217;s start creating Objective-C app.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[being an engineer]]></title>
+    <link href="http://shin1ohno.github.com/blog/2012/11/14/being-an-engineer/"/>
+    <updated>2012-11-14T19:21:00+09:00</updated>
+    <id>http://shin1ohno.github.com/blog/2012/11/14/being-an-engineer</id>
+    <content type="html"><![CDATA[<p>I&#8217;ve been working as an engineer at cookpad for few month.</p>
+
+<p><em>yes an engineer. some of you may be surprised. I write codes every day</em></p>
+
+<p>here&#8217;s what I learned</p>
+
+<ul>
+<li>simple: remove function and change your business process. don&#8217;t implement new functions without removing exsting one. don&#8217;t solve problem with new functions. adding many functions or changing uis  makes your product confusing in many case</li>
+<li>be trackable: always be trackable. most of us don&#8217;t have excellent sense for build product like steve jobs. track everything and keep making your product better. don&#8217;t discuss without/before tracking. that&#8217;s waste of your time.</li>
+<li>just plan-ship-track: don&#8217;t waste your time. just ship and see what people do or say. but have some time for planning before implement something. that makes your product simpler and trackable</li>
+</ul>
+
+
+<p>these are very basic things that I said to my staff many times as an manager. but I know I don&#8217;t understand single one of them now. writing code and shipping product makes things clear.</p>
+
+<p>really fun to me.</p>
+
+<p>anyway, always think of these 3 things above and change the way you use your time.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[new bike frame]]></title>
+    <link href="http://shin1ohno.github.com/blog/2012/11/13/new-bike-frame/"/>
+    <updated>2012-11-13T22:46:00+09:00</updated>
+    <id>http://shin1ohno.github.com/blog/2012/11/13/new-bike-frame</id>
+    <content type="html"><![CDATA[<p>got new frame &#8216;look 695 SR&#8217;. yay !</p>
+
+<ul>
+<li>pros
+
+<ul>
+<li>very very stiff and respond well</li>
+<li>comfortable: fits very well and absorbs road noise</li>
+<li>light enough: 6.4kg with pedal and water bottle</li>
+</ul>
+</li>
+<li>cons
+
+<ul>
+<li>crank is very stiff and light but cause gear noise when change gears to outer-low position</li>
+<li>crank arm can&#8217;t be no shorter than 170mm</li>
+<li>long head tube</li>
+</ul>
+</li>
+</ul>
+
+
+<p>great frame to ride, great frame to stare&#8230;</p>
+
+<p><a href="http://500px.com/photo/18083075"><img src="http://pcdn.500px.net/18083075/a8f241cc74cd4ed9ff66e1c917154b7a5da06962/4.jpg" alt="new bicycle frame by Ohno Shin'ichi (shin1ohno)) on 500px.com" border="0" style="margin: 0 0 5px 0;"></a><br/><font style="font-size: 120%;"><a href="http://500px.com/photo/18083075">new bicycle frame</a> by <a href="http://500px.com/shin1ohno">Ohno Shin&#8217;ichi</a></font></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[mirrorless camera]]></title>
+    <link href="http://shin1ohno.github.com/blog/2012/09/30/mirrorless-camera/"/>
+    <updated>2012-09-30T18:24:00+09:00</updated>
+    <id>http://shin1ohno.github.com/blog/2012/09/30/mirrorless-camera</id>
+    <content type="html"><![CDATA[<p>my wife bought a mirrorless camera &#8216;olympus e-pm1&#8217;.</p>
+
+<p>here&#8217;s a comparison between 3 cameras</p>
+
+<ul>
+<li>canon s95: compact camera</li>
+<li>canon 10d: old dslr</li>
+<li>e-pm1: brand new camera</li>
+</ul>
+
+
+<p>first of all, e-pm1 shots very well. hight iso speed is great for shooting an animal and dark situation</p>
+
+<!--more-->
+
+
+<p><a href="http://500px.com/photo/14893035"><img src="http://pcdn.500px.net/14893035/a13683dd396af30f44fd47b8d6643dea4fa28d43/4.jpg" alt="Untitled by Ohno Shin'ichi (shin1ohno) on 500px.com" border="0" style="margin: 0 0 5px 0;"></a><br/><font style="font-size: 120%;"><a href="http://500px.com/photo/14893035">pino shots by e-pm1</a> by <a href="http://500px.com/OhnoShinichi">Ohno Shin&#8217;ichi</a></font></p>
+
+<p>s95 is very handy and shoots as well as e-pm1</p>
+
+<p><a href="http://500px.com/photo/14892915"><img src="http://pcdn.500px.net/14892915/6138b907ac1ce4526d3aa98cfc5e143579114305/4.jpg" alt="Untitled by Ohno Shin'ichi (shin1ohno) on 500px.com" border="0" style="margin: 0 0 5px 0;"></a><br/><font style="font-size: 120%;"><a href="http://500px.com/photo/14892915">pino shots by s95</a> by <a href="http://500px.com/OhnoShinichi">Ohno Shin&#8217;ichi</a></font></p>
+
+<p>eos 10d is very old but shoots best. larger sensor makes photo very steric</p>
+
+<p><a href="http://500px.com/photo/14893589"><img src="http://pcdn.500px.net/14893589/011693ea4de6f42ce246ea47d434e0d52e181afb/4.jpg" alt="Untitled by Ohno Shin'ichi (shin1ohno) on 500px.com" border="0" style="margin: 0 0 5px 0;"></a><br/><font style="font-size: 120%;"><a href="http://500px.com/photo/14893589">pino shots by eos 10d</a> by <a href="http://500px.com/OhnoShinichi">Ohno Shin&#8217;ichi</a></font></p>
+
+<p><a href="http://500px.com/photo/14894749"><img src="http://pcdn.500px.net/14894749/4378b055c3b39d9e01522c681c873b53913bec5a/4.jpg" alt="Untitled by Ohno Shin'ichi (shin1ohno) on 500px.com" border="0" style="margin: 0 0 5px 0;"></a><br/><font style="font-size: 120%;"><a href="http://500px.com/photo/14894749">pino shots by eos 10d</a> by <a href="http://500px.com/shin1ohno">Ohno Shin&#8217;ichi</a></font></p>
+
+<p>each photo is taken under very differnet situation, so this comparison represents just an aspect.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[looking for a new frame]]></title>
+    <link href="http://shin1ohno.github.com/blog/2012/09/30/looking-for-a-new-frame/"/>
+    <updated>2012-09-30T17:55:00+09:00</updated>
+    <id>http://shin1ohno.github.com/blog/2012/09/30/looking-for-a-new-frame</id>
+    <content type="html"><![CDATA[<p>i&#8217;m looking for a new bycicle frame.</p>
+
+<ul>
+<li>what i want:
+
+<ul>
+<li>head tube is no longer than 120mm</li>
+<li>looks nice in smallest size, like 47/48cm</li>
+<li>weights no more than 1kg</li>
+</ul>
+</li>
+</ul>
+
+
+<p>here&#8217;s the candidates.</p>
+
+<ul>
+<li>look
+
+<ul>
+<li>695: proprietary chain sets and tall head tube sucks</li>
+<li>595: looking good but a little bit old</li>
+<li>586: looking good but 595 looks better</li>
+</ul>
+</li>
+<li>cervelo
+
+<ul>
+<li>R5: hmm&#8230; 48cm frame looks ugry</li>
+<li>S5: rides very well but 48cm frame looks ugry</li>
+<li>R3sl: no stock</li>
+<li>S3: no stock</li>
+</ul>
+</li>
+<li>cannondale
+
+<ul>
+<li>super six evo: super light and rides very well, but very high price point</li>
+</ul>
+</li>
+<li>bmc
+
+<ul>
+<li>tmr01: delivery starts next year</li>
+<li>slr01: hmm&#8230;</li>
+</ul>
+</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

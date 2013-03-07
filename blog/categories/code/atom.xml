@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: code | 11t]]></title>
+  <link href="http://shin1ohno.github.com/blog/categories/code/atom.xml" rel="self"/>
+  <link href="http://shin1ohno.github.com/"/>
+  <updated>2013-03-08T00:37:22+09:00</updated>
+  <id>http://shin1ohno.github.com/</id>
+  <author>
+    <name><![CDATA[shin1ohno]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[First bit of Objective-C]]></title>
+    <link href="http://shin1ohno.github.com/blog/2013/03/08/first-bit-of-objective-c/"/>
+    <updated>2013-03-08T00:20:00+09:00</updated>
+    <id>http://shin1ohno.github.com/blog/2013/03/08/first-bit-of-objective-c</id>
+    <content type="html"><![CDATA[<p>I think I know very basics of Objective-C for objective way.</p>
+
+<p>```
+using namespace Cedar::Matchers;
+using namespace Cedar::Doubles;</p>
+
+<p>@interface Greeter : NSObject
+- (id)initWithName:(NSString <em>)name;
+- (NSString </em>)sayHello;
+@property (copy) NSString <em>name;
+@property (assign) NSString </em>helloWord;
+@end</p>
+
+<p>@interface Greeter ()
+- (void)setWord;
+@end</p>
+
+<p>@implementation Greeter
+- (id)initWithName:(NSString *)name {
+  self = [super init];
+  self.name = name;
+  return self;
+}</p>
+
+<ul>
+<li><p>(NSString *)sayHello {
+[self setWord];
+return self.helloWord;
+}</p></li>
+<li><p>(void)setWord {
+NSMutableString *word = [NSMutableString stringWithString:@"hello"];
+if (self.name != nil) {
+  [word appendString:@", "];
+  [word appendString:self.name];
+} else {
+  [word appendString:@" !"];
+}
+self.helloWord = word;
+}
+@end</p></li>
+</ul>
+
+
+<p>SPEC_BEGIN(Sandbox)</p>
+
+<p>describe (@"Greeter", ^{
+  it (@"can be initialized with name", ^{</p>
+
+<pre><code>Greeter *man = [[Greeter alloc] initWithName:@"shin1ohno"];
+man.name should equal(@"shin1ohno");
+[man sayHello] should equal(@"hello, shin1ohno");
+</code></pre>
+
+<p>  });</p>
+
+<p>  it (@"says hello", ^{</p>
+
+<pre><code>Greeter *man = [[Greeter alloc] init];
+[man sayHello] should equal(@"hello !");
+</code></pre>
+
+<p>  });
+});</p>
+
+<p>SPEC_END
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Calendar gem]]></title>
+    <link href="http://shin1ohno.github.com/blog/2013/03/07/calendar-gem/"/>
+    <updated>2013-03-07T09:30:00+09:00</updated>
+    <id>http://shin1ohno.github.com/blog/2013/03/07/calendar-gem</id>
+    <content type="html"><![CDATA[<p>I recently create a gem called <a href="https://rubygems.org/gems/event_cal">event_cal</a>.</p>
+
+<p>as of today, the gem has been downloaded over 1,500 times. amazing.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Objective-C for RSpec guy]]></title>
+    <link href="http://shin1ohno.github.com/blog/2013/03/07/objective-c-for-rspec-guy/"/>
+    <updated>2013-03-07T09:20:00+09:00</updated>
+    <id>http://shin1ohno.github.com/blog/2013/03/07/objective-c-for-rspec-guy</id>
+    <content type="html"><![CDATA[<p>RSpec helps me a lot when coding ruby. so, I want a BDD environment like RSpec for Objective-C, too.</p>
+
+<p>I'm now trying Cedar made by Pivotal Labs a creator of Jasmine.</p>
+
+<p>here's first few commands to introduce Cedar.</p>
+
+<p><code>
+git clone git://github.com/pivotal/cedar.git
+cd cedar
+./installCodeSnippetsAndTemplates
+</code></p>
+
+<p>as prompted, restart Xcode and you are ready to use new code snippets and templates. the templates are available under the Cedar section in XCode new file wizard.</p>
+
+<p>OK, let's start creating Objective-C app.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[being an engineer]]></title>
+    <link href="http://shin1ohno.github.com/blog/2012/11/14/being-an-engineer/"/>
+    <updated>2012-11-14T19:21:00+09:00</updated>
+    <id>http://shin1ohno.github.com/blog/2012/11/14/being-an-engineer</id>
+    <content type="html"><![CDATA[<p>I've been working as an engineer at cookpad for few month.</p>
+
+<p><em>yes an engineer. some of you may be surprised. I write codes every day</em></p>
+
+<p>here's what I learned</p>
+
+<ul>
+<li>simple: remove function and change your business process. don't implement new functions without removing exsting one. don't solve problem with new functions. adding many functions or changing uis  makes your product confusing in many case</li>
+<li>be trackable: always be trackable. most of us don't have excellent sense for build product like steve jobs. track everything and keep making your product better. don't discuss without/before tracking. that's waste of your time.</li>
+<li>just plan-ship-track: don't waste your time. just ship and see what people do or say. but have some time for planning before implement something. that makes your product simpler and trackable</li>
+</ul>
+
+
+<p>these are very basic things that I said to my staff many times as an manager. but I know I don't understand single one of them now. writing code and shipping product makes things clear.</p>
+
+<p>really fun to me.</p>
+
+<p>anyway, always think of these 3 things above and change the way you use your time.</p>
+]]></content>
+  </entry>
+  
+</feed>
